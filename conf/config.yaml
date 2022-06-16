@@ -1,0 +1,8 @@
+defaults:
+  - dataloader : dataloader
+  - optimizer  : Adam
+
+
+epoch        : 100
+loss_function: cross_entropy
+model        : mnist_cnn
