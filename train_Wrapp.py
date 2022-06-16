@@ -1,14 +1,12 @@
 import time
 import torch
-from Mnist_CNN import Mnist_CNN
+from model.ModelFactory import ModelFactory
 from torch import optim
 from torch.utils.data import TensorDataset
 
 from MNIST_data_setup import MNIST_data_setup
 
 from dataloader.DataLoaderFactory import DataLoaderFactory
-from dataloader.WrappedDataLoader import WrappedDataLoader
-from dataloader.MNISTDataLoader import MNISTDataLoader
 from optimizer.OptimizerFactory import OptimizerFactory
 from loss_function.LossFunctionFactory import LossFunctionFactory
 
@@ -28,7 +26,7 @@ class Train:
         train_dl   = DataLoader((x_train, y_train), config=config.dataloader, dev=dev)
         valid_dl   = DataLoader((x_valid, y_valid), config=config.dataloader, dev=dev)
 
-        model = Mnist_CNN()
+        model      = ModelFactory().create(config.model); model.to(dev)
         model.to(dev)
 
         opt = OptimizerFactory().create(model.parameters(), **config.optimizer)
