@@ -25,7 +25,9 @@ class Train:
         train_dl   = DataLoader((x_train, y_train), config=config.dataloader, dev=dev)
         valid_dl   = DataLoader((x_valid, y_valid), config=config.dataloader, dev=dev)
 
-        model      = ModelFactory().create(config.model); model.to(dev)
+        model      = ModelFactory().create(**config.model)
+        model.to(dev)
+
         loss_func  = LossFunctionFactory().create(config.loss_function)
         opt        = OptimizerFactory().create(model.parameters(), **config.optimizer)
         print(model); print(loss_func); print(opt)
@@ -42,7 +44,7 @@ class Train:
             model.train()
             for xb, yb in train_dl:
                 pred = model(xb)
-                loss = loss_func(pred, yb)
+                loss = loss_func(pred, yb) # <-どういう引数を渡すかはモデル依存なので汎化性がない
 
                 loss.backward()
                 opt.step()
