@@ -11,7 +11,7 @@ class Mnist_CNN(nn.Module):
         output_shape = 10 # class
 
         self.f = nn.Sequential(
-            nn.Conv2d(1, 6, kernel_size=5, padding=2),
+            nn.Conv2d(self.channel, 6, kernel_size=5, padding=2),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(2),
             nn.Conv2d(6, 16, kernel_size=5),

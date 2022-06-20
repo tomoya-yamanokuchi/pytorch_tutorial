@@ -3,6 +3,7 @@ import torch
 import torchvision
 from torch.utils.tensorboard import SummaryWriter
 
+import sys; import pathlib; p=pathlib.Path(); sys.path.append(str(p.parent.resolve()))
 from MNIST_data_setup import MNIST_data_setup
 from model.ModelFactory import ModelFactory
 from dataloader.DataLoaderFactory import DataLoaderFactory
@@ -65,7 +66,7 @@ if __name__ == '__main__':
     import hydra
     from omegaconf import DictConfig
 
-    @hydra.main(version_base=None, config_path="conf", config_name="config")
+    @hydra.main(version_base=None, config_path="../conf", config_name="config")
     def get_config(cfg: DictConfig) -> None:
         train = Train()
         train.run(cfg)

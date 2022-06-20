@@ -14,8 +14,8 @@ class MNISTDataLoader(BaseWrappedDataLoader):
 
     def preprocess(self, x, y):
         x = x.view(-1, 1, 28, 28)
-        x = transforms.Resize(size=64)(x)
-        x = self.convert_to_rgb(x)
+        # x = transforms.Resize(size=64)(x)
+        # x = self.convert_to_rgb(x)
         if self.dev is None: return x, y
         else               : return x.to(self.dev), y.to(self.dev)
 

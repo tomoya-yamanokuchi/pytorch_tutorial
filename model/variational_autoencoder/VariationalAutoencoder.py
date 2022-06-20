@@ -11,13 +11,10 @@ class VariationalAutoencoder(nn.Module):
                  in_channels      : int,
                  conv_out_channels: int,
                  latent_dim       : List = None,
-                 loss             :
                  **kwargs) -> None:
         super().__init__()
         self.encoder = Encoder(in_channels, conv_out_channels, latent_dim)
         self.decoder = Decoder(in_channels, conv_out_channels, latent_dim)
-        self.loss    = loss
-        self.a = 4
 
 
     def reparameterize(self, mu: Tensor, logvar: Tensor) -> Tensor:
@@ -36,8 +33,3 @@ class VariationalAutoencoder(nn.Module):
         mu, log_var = self.encoder.encode(input)
         z = self.reparameterize(mu, log_var)
         return  [self.decoder.decode(z), input, mu, log_var]
-
-
-    def loss_function(self, name, input: Tensor, output: Tensor):
-        assert name == "vae_loss_function"
-

@@ -1,8 +1,8 @@
 defaults:
   - dataloader : dataloader
   - optimizer  : Adam
-  - model      : vae
+  - model      : mnist_cnn
 
 epoch        : 100
-# loss_function: cross_entropy
-loss_function: vae_loss_function
+loss_function: cross_entropy
+# loss_function: vae_loss_function
