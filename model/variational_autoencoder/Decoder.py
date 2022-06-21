@@ -60,7 +60,7 @@ class Decoder(nn.Module):
 
 
 
-    def decode(self, z: Tensor) -> Tensor:
+    def forward(self, z: Tensor) -> Tensor:
         """
         Maps the given latent codes
         onto the image space.

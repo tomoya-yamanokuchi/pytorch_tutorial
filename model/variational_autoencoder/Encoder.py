@@ -34,7 +34,7 @@ class Encoder(nn.Module):
         self.fc_var  = nn.Linear(conv_out_channels[-1]*4, latent_dim)
 
 
-    def encode(self,  input: Tensor) -> List[Tensor]:
+    def forward(self,  input: Tensor) -> List[Tensor]:
         """
         - param input: (Tensor) Input tensor to encoder [N x C x H x W]
         -      return: (Tensor) List of latent codes
