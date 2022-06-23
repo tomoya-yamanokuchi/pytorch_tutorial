@@ -4,6 +4,7 @@ import sys; import pathlib; p=pathlib.Path(); sys.path.append(str(p.parent.resol
 
 
 from model.LitAutoEncoder import *
+from model.variational_autoencoder.LitVariationalAutoencoder import LitVariationalAutoencoder
 from torchvision import transforms
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
@@ -27,9 +28,14 @@ val_set = DataLoader(valid_set)
 
 train_transforms = transforms.Compose([transforms.ToTensor()])
 
-autoencoder = LitAutoEncoder(Encoder(), Decoder())
+# autoencoder = LitAutoEncoder(Encoder(), Decoder())
+autoencoder = LitVariationalAutoencoder()
 
-trainer = pl.Trainer()
+trainer = pl.Trainer(limit_train_batches=100, max_epochs=2)
+# trainer = pl.Trainer(max_epochs=2)
+# trainer = pl.Trainer(auto_scale_batch_size="binsearch")
+# trainer.tune(autoencoder)
+
 trainer.fit(model=autoencoder, train_dataloaders=train_set, val_dataloaders=val_set)
 trainer.test(model=autoencoder, dataloaders=DataLoader(test_set))
 

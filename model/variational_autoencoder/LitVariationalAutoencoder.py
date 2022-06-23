@@ -5,7 +5,7 @@ import pytorch_lightning as pl
 from .VariationalAutoencoder import VariationalAutoencoder
 
 
-class LitVariationalAutoencoder(pl.LightningDataModule):
+class LitVariationalAutoencoder(pl.LightningModule):
     def __init__(self,
                 #  in_channels      : int,
                 #  conv_out_channels: int,

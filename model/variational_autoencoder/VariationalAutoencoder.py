@@ -5,14 +5,20 @@ from typing import List
 from .Encoder import Encoder
 from .Decoder import Decoder
 from torch.nn import functional as F
-
+import pytorch_lightning as pl
 
 class VariationalAutoencoder(nn.Module):
+# class VariationalAutoencoder(pl.LightningModule):
     def __init__(self,
-                 in_channels      : int,
-                 conv_out_channels: int,
-                 latent_dim       : List = None,
+                #  in_channels      : int,
+                #  conv_out_channels: int,
+                #  latent_dim       : List = None,
                  **kwargs) -> None:
+
+        in_channels       = 3
+        conv_out_channels = [32, 64, 128, 256, 512]
+        latent_dim        = 2
+
         super().__init__()
         self.encoder = Encoder(in_channels, conv_out_channels, latent_dim)
         self.decoder = Decoder(in_channels, conv_out_channels, latent_dim)
