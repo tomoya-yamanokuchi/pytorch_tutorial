@@ -3,6 +3,10 @@ defaults:
   - optimizer  : Adam
   - model      : vae
 
-epoch        : 100
+epoch        : 5
 loss_function: cross_entropy
 # loss_function: vae_loss_function
+
+logging_params:
+  save_dir: "logs/"
+  name    : "VAE"

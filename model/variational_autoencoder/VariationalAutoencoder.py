@@ -7,6 +7,7 @@ from .Decoder import Decoder
 from torch.nn import functional as F
 import pytorch_lightning as pl
 
+
 class VariationalAutoencoder(nn.Module):
 # class VariationalAutoencoder(pl.LightningModule):
     def __init__(self,
@@ -16,7 +17,8 @@ class VariationalAutoencoder(nn.Module):
                  **kwargs) -> None:
 
         in_channels       = 3
-        conv_out_channels = [32, 64, 128, 256, 512]
+        # conv_out_channels = [32, 64, 128, 256, 512]
+        conv_out_channels = [32, 32, 32, 32, 32]
         latent_dim        = 2
 
         super().__init__()
@@ -31,7 +33,7 @@ class VariationalAutoencoder(nn.Module):
 
 
     def forward(self, input: Tensor, **kwargs) -> List[Tensor]:
-        mu, log_var = self.encoder(input)
+        mu, log_var = self.encoder.forward(input)
         z = self.reparameterize(mu, log_var)
         return  [self.decoder(z), input, mu, log_var]
 

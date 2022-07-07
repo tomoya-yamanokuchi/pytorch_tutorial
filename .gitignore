@@ -6,3 +6,7 @@ data/*
 *.pyc
 *.gz
 *-ubyte
+*.png
+*.ckpt
+*.0
+logs/*

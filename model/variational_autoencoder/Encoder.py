@@ -39,8 +39,8 @@ class Encoder(nn.Module):
         - param input: (Tensor) Input tensor to encoder [N x C x H x W]
         -      return: (Tensor) List of latent codes
         """
-        result  = self.encoder(input)                ;print(result.shape)
-        result  = torch.flatten(result, start_dim=1) ;print(result.shape)
+        result  = self.encoder(input)                #;print(result.shape)
+        result  = torch.flatten(result, start_dim=1) #;print(result.shape)
 
         mu      = self.fc_mu(result)
         log_var = self.fc_var(result)

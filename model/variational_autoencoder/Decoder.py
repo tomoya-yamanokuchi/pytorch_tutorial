@@ -68,6 +68,6 @@ class Decoder(nn.Module):
         : return: (Tensor) [B x C x H x W]
         """
         result = self.decoder_input(z)
-        result = result.view(-1, 512, 2, 2)
+        result = result.view(-1, 32, 2, 2)
         result = self.decoder(result)
         return result
